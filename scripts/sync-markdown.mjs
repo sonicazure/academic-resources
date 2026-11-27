@@ -306,8 +306,8 @@ const crossDisciplinaryAuthors = [...authorMap.values()]
 const catalog = {
   generatedAt: new Date().toISOString(),
   sourceFile: path.basename(sourcePath),
-  title: "学术资源与谱系",
-  subtitle: "Index of Literary, Philosophical & Social Theory",
+  title: "学术资源与谱系 (理论篇)",
+  subtitle: "Academic Resources & Intellectual Genealogy (Theory)",
   metaNotes,
   stats: {
     disciplines: disciplines.length,

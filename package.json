@@ -5,7 +5,8 @@
   "type": "module",
   "description": "个人学术资源与谱系 · Editorial Folio 在线典藏档案",
   "scripts": {
-    "sync": "node scripts/sync-markdown.mjs",
+    "enrich": "node scripts/enrich-markdown.mjs",
+    "sync": "node scripts/enrich-markdown.mjs && node scripts/sync-markdown.mjs",
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs"
   }
