@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-typo="revue" data-density="compact">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>学术资源与谱系 (理论篇) · Editorial Folio</title>
+  <meta name="description" content="个人学术资源与思想谱系典藏索引 — 文学、哲学、社会理论与史艺科学" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <!-- 顶部极细期刊眉线栏 -->
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <button id="mobile-nav-btn" class="icon-btn mobile-only" aria-label="展开目录">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <span class="edition-mark">FOLIO ARCHIVE · VOL. I–IV</span>
+        <span class="edition-sep desktop-only">/</span>
+        <span id="top-era-span" class="edition-era desktop-only">MMXVIII — MMXXVI</span>
+      </div>
+
+      <div class="top-bar-right">
+        <!-- 标题排印切换器：大标宋 / 小标宋 / 明朝活字 -->
+        <div class="seg-switcher typo-switcher" role="group" aria-label="标题排印风格">
+          <button type="button" class="seg-btn is-active" data-typo-set="revue" title="大标宋 / 思源特粗宋 + Instrument Serif：醒目杂志锋芒">大标宋</button>
+          <button type="button" class="seg-btn" data-typo-set="editorial" title="小标宋 / 华文中宋 + Cormorant Garamond：端庄雕版书目">小标宋</button>
+          <button type="button" class="seg-btn" data-typo-set="atelier" title="筑紫明朝 + EB Garamond：古典手工活字">明朝活字</button>
+        </div>
+
+        <!-- 排版密度切换器 -->
+        <div class="seg-switcher density-switcher desktop-only" role="group" aria-label="显示密度">
+          <button type="button" class="seg-btn is-active" data-density-set="compact" title="高密度紧凑排布">紧凑</button>
+          <button type="button" class="seg-btn" data-density-set="airy" title="宽行距慢读版">舒展</button>
+        </div>
+
+        <button id="colophon-btn" class="text-btn" type="button" title="查看资料来源与使用口径">使用口径</button>
+
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="切换日间棉纸 / 暗夜典藏">
+          <svg class="sun-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="moon-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 精致紧凑刊头 Masthead -->
+  <section class="masthead">
+    <div class="masthead-inner">
+      <div class="masthead-title-block">
+        <div class="masthead-heading-line">
+          <span class="vermilion-diamond" aria-hidden="true">◈</span>
+          <h1 class="masthead-title">学术资源与谱系 (理论篇)</h1>
+        </div>
+        <div class="masthead-subtitle">Academic Resources &amp; Intellectual Genealogy (Theory)</div>
+      </div>
+
+      <div class="masthead-stats" id="masthead-stats" aria-label="典藏统计"></div>
+    </div>
+  </section>
+
+  <!-- 主体双栏布局 -->
+  <div class="layout-shell">
+    <!-- 左侧书脊导航 -->
+    <aside class="spine-nav" id="spine-nav" aria-label="学科目录">
+      <div class="spine-inner">
+        <div class="spine-header">
+          <span class="spine-label">CATALOGUE INDEX</span>
+          <button id="mobile-nav-close" class="icon-btn mobile-only" aria-label="关闭目录">✕</button>
+        </div>
+        <nav id="toc-tree" class="toc-tree"></nav>
+        <div class="spine-footer">
+          <div class="spine-legend">
+            <span class="star-mark">✦</span>
+            <span>高优先级重点条目</span>
+          </div>
+          <div class="spine-legend">
+            <span class="review-seal-sample">评</span>
+            <span>附有个人阅读札记</span>
+          </div>
+          <div class="spine-legend">
+            <span class="cross-pill-sample">×2</span>
+            <span>跨学科复现人物</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div id="mobile-backdrop" class="mobile-backdrop" hidden></div>
+
+    <!-- 右侧内容主区 -->
+    <main class="folio-main">
+      <!-- 吸顶检索与多维筛选台 -->
+      <div class="controls-bar" id="controls-bar">
+        <div class="controls-row-primary">
+          <div class="search-wrap">
+            <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+              <circle cx="11" cy="11" r="7.5"></circle>
+              <line x1="20" y1="20" x2="16.4" y2="16.4"></line>
+            </svg>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="检索作者、原名、书名、年份或评语内容…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <kbd class="kbd-hint" id="kbd-hint">/</kbd>
+            <button id="search-clear" class="search-clear" type="button" hidden aria-label="清空搜索">✕</button>
+          </div>
+
+          <div class="filter-pills">
+            <button id="filter-starred" class="pill-btn" type="button" aria-pressed="false">
+              <span class="star-mark">✦</span> 仅看重点
+            </button>
+            <button id="filter-reviewed" class="pill-btn" type="button" aria-pressed="false">
+              <span class="pill-seal">评</span> 仅看有评
+            </button>
+            <button id="filter-cross" class="pill-btn" type="button" aria-pressed="false">
+              跨学科枢纽
+            </button>
+          </div>
+
+          <div class="view-switcher" role="tablist" aria-label="浏览视图">
+            <button class="view-btn is-active" data-view="cards" role="tab" aria-selected="true">人物卡片</button>
+            <button class="view-btn" data-view="folio" role="tab" aria-selected="false">印本长卷</button>
+            <button class="view-btn" data-view="timeline" role="tab" aria-selected="false">出生总谱</button>
+          </div>
+        </div>
+
+        <div class="controls-row-secondary">
+          <div class="filter-strips-wrap">
+            <div class="disc-strip" id="disc-strip" aria-label="学科筛选"></div>
+            <span class="strip-divider" aria-hidden="true">|</span>
+            <div class="year-strip" id="year-strip" aria-label="年份筛选"></div>
+          </div>
+          <div class="result-summary" id="result-summary"></div>
+        </div>
+      </div>
+
+      <!-- 书目呈现区 -->
+      <div id="catalog-root" class="catalog-root">
+        <div class="loading-state">正在装帧书目档案…</div>
+      </div>
+
+      <!-- 卷尾版权页 Colophon -->
+      <footer class="folio-colophon">
+        <div class="colophon-rule"></div>
+        <div class="colophon-content">
+          <div class="colophon-left">
+            <span class="vermilion-diamond">◈</span>
+            <span>学术资源与谱系 (理论篇) · 个人长期典藏印本</span>
+          </div>
+          <div class="colophon-right" id="colophon-meta"></div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- 悬停微笺预览浮窗 -->
+  <div id="review-popover" class="review-popover" hidden role="tooltip"></div>
+
+  <!-- 右侧人物谱系笺 / 阅读札记抽屉 -->
+  <div id="dossier-overlay" class="drawer-overlay" hidden></div>
+  <aside id="author-dossier" class="author-dossier" aria-hidden="true" aria-label="档案与阅读札记">
+    <div class="dossier-header">
+      <div id="dossier-kicker" class="dossier-kicker">AUTHOR DOSSIER · 人物谱系笺</div>
+      <button id="dossier-close" class="icon-btn" type="button" aria-label="关闭档案">✕</button>
+    </div>
+    <div id="dossier-body" class="dossier-body"></div>
+  </aside>
+
+  <!-- 使用口径模态框 -->
+  <div id="colophon-modal" class="modal-overlay" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-head">
+        <div>
+          <div class="modal-kicker">EDITORIAL PRINCIPLES</div>
+          <h2 id="modal-title" class="modal-title">资料来源与使用口径</h2>
+        </div>
+        <button id="modal-close" class="icon-btn" type="button" aria-label="关闭">✕</button>
+      </div>
+      <ul id="meta-notes-list" class="meta-notes-list"></ul>
+      <div class="modal-foot">
+        <span>快捷键：按 <kbd>/</kbd> 检索，按 <kbd>Esc</kbd> 关闭浮层或清空检索。悬停「评」印可预览摘句，点击可展读全文。</span>
+      </div>
+    </div>
+  </div>
+
+  <button id="back-to-top" class="back-to-top" type="button" hidden aria-label="返回顶部">↑</button>
+
+  <script type="module" src="./assets/app.js"></script>
+</body>
+</html>
