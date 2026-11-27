@@ -1,23 +1,25 @@
 @echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-echo 正在从 Obsidian 原文件同步学术书目...
-node scripts\sync-markdown.mjs
+echo [1/2] 正在从 Obsidian 同步学术资源与谱系...
+node scripts/sync-markdown.mjs
+if %errorlevel% neq 0 (
+  echo.
+  echo 同步失败，请检查上方错误信息。
+  pause
+  exit /b 1
+)
 echo.
-if exist ".git" (
-  echo 检测到 Git 仓库，正在检查变更...
-  git add data/catalog.json
-  git diff --cached --quiet
-  if errorlevel 1 (
-    for /f "tokens=1-3 delims=/ " %%a in ('date /t') do set TODAY=%%a-%%b-%%c
-    git commit -m "chore: 同步最新学术资源与谱系"
-    git push
-    echo 已自动推送至远端，线上网页将在约 15 秒内更新！
-  ) else (
-    echo 书目内容无新增变更，无需推送。
-  )
+echo [2/2] 正在推送更新到 GitHub Pages...
+git add data/catalog.json data/reviews.json
+git diff --cached --quiet
+if %errorlevel% equ 0 (
+  echo 没有检测到数据变更，无需推送。
 ) else (
-  echo 本地数据已更新！刷新 http://127.0.0.1:4173 即可查看最新结果。
+  git commit -m "chore: sync catalog from Obsidian"
+  git push
+  echo.
+  echo 已推送到 GitHub，约 30-60 秒后线上网页自动生效！
 )
 echo.
 pause
